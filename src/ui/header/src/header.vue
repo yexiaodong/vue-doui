@@ -1,6 +1,6 @@
 <template>    
     <div class="" >        
-        组件测试heaer
+        组件测试heaer1
     </div>
 </template>
 
