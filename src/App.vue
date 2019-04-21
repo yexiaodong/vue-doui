@@ -1,25 +1,21 @@
 <template>
   <div id="app">
-    <do-header></do-header>
+    <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+
+<script>
+export default {
+  methods:{
   }
+}
+</script>
+
+<style lang="scss">
+section{
+  margin:10px;
+  padding:10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
 }
 </style>

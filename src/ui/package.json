@@ -1,0 +1,22 @@
+{
+  "name": "@yexiaodong/do",
+  "version": "1.0.1",
+  "description": "vue ui",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yexiaodong/vue-doui.git"
+  },
+  "keywords": [
+    "vueui"
+  ],
+  "author": "yexiaodong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yexiaodong/vue-doui/issues"
+  },
+  "homepage": "https://github.com/yexiaodong/vue-doui#readme"
+}
