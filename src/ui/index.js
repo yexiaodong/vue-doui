@@ -2,6 +2,7 @@
 import Header from './header'
 import File from './file'
 import Toast from './toast'
+import Input from './input'
 
 // 定义我们的插件
 const myPlugin = {    
@@ -11,6 +12,7 @@ const myPlugin = {
         // 将其注册为vue的组件，参数1：组件名，参数2：开发的组件
         Vue.component(Header.name, Header);
         Vue.component(File.name, File);
+        Vue.component(Input.name, Input);
         
         Vue.prototype.$doToast = Toast;
     }

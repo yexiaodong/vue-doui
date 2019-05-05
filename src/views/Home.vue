@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-     <router-link v-for="(item,index) in list" :key="index" :to="item.link">{{item.title}}</router-link>
+     <router-link class="item" v-for="(item,index) in list" :key="index" :to="item.link">{{item.title}}</router-link>
   </div>
 </template>
 
@@ -12,9 +12,19 @@ export default {
   data(){
     return {
       list:[
-        {title:'Toast',link:'/toast'}
+        {title:'Toast',link:'/toast'},
+        {title:'Input',link:'/input'}
       ]
     }
   }
 }
 </script>
+
+<style lang="scss">
+.home{
+  .item{
+    display: block;
+  }
+}
+</style>
+

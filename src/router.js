@@ -26,5 +26,10 @@ export default new Router({
       name: 'toast',
       component: () => import('./views/Toast.vue')
     },
+    {
+      path: '/input',
+      name: 'input',
+      component: () => import('./views/Input.vue')
+    },
   ]
 })
