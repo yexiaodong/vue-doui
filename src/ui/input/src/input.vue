@@ -2,7 +2,7 @@
 <template>
 <div class="doInput">
     <label :for="id">{{label}}<span>{{labelSuffix}}</span></label>
-    <input :id="id" type="text" :placeholder="'请输入'+label">
+    <input :id="id" v-model="currentValue" type="text" :placeholder="'请输入'+label">
 </div>
 </template>
 
@@ -14,36 +14,45 @@ export default {
             currentValue: this.value,
         }
     },
-    props:{
-        id:{
-            type:String,
+    props: {
+        id: {
+            type: String,
             required: true
         },
-        label:String,
-        labelSuffix:{//后缀
-            type:String,
-            default:"："
+        label: String,
+        labelSuffix: { //后缀
+            type: String,
+            default: "："
         },
-       
-        value: [String, Number],
+        value: [String, Number], //值
     },
-    mounted() {
-    }
+    watch: {
+        value(val) {
+            this.currentValue = val;
+        },
+
+        currentValue(val) {
+            this.$emit('input', val);//将值给父组件
+        },
+    },
+    mounted() {},
 };
 </script>
 
 <style lang="scss" scoped>
-.doInput{
-    label{
+.doInput {
+    label {
         font-size: 1rem;
     }
-    input{
+
+    input {
         padding: 0 10px;
         height: 3.125rem;
         line-height: 3.125rem;
-        border:none;
+        border: none;
         font-size: 1rem;
-        &:focus{
+
+        &:focus {
             outline: none;
         }
     }
