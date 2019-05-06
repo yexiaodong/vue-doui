@@ -1,8 +1,9 @@
 <!-- main.vue -->
 <template>
-<div class="doInput">
-    <label :for="id">{{label}}<span>{{labelSuffix}}</span></label>
-    <input :id="id" v-model="currentValue" type="text" :placeholder="'请输入'+label">
+<div class="doInput" v-bind:class="{error:!valid}">
+    <label :for="id"><span class="prefix" v-if="required">*</span>{{label}}<span>{{labelSuffix}}</span></label>
+    <input :id="id" v-model="currentValue" type="text" :placeholder="'请输入'+label" @blur="handlerBlur">
+    <span class="errorMsg">{{errorMsg}}</span>
 </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
     data() {
         return {
             currentValue: this.value,
+
+            //验证类的数据
+            valid: true,
+            errorMsg: '',
+            errorCode: '',
         }
     },
     props: {
@@ -25,24 +31,64 @@ export default {
             default: "："
         },
         value: [String, Number], //值
+        required: {
+            type: Boolean,
+            default: false
+        },
+    },
+    methods: {
+        validatorInput() {
+            if (this.required && this.currentValue == '') {
+                this.setError('不能为空', 'NOT_NULL');
+                return;
+            }
+            this.valid = true;
+            this.errorMsg = '';
+            this.errorCode = '';
+        },
+        setError(error, code) {
+            this.errorMsg = error;
+            this.errorCode = code;
+            this.valid = false;
+        },
+        handlerBlur(){
+            this.validatorInput();
+        }
     },
     watch: {
         value(val) {
             this.currentValue = val;
         },
-
         currentValue(val) {
-            this.$emit('input', val);//将值给父组件
+            this.validatorInput()
+            this.$emit('input', val); //将值给父组件
         },
     },
-    mounted() {},
+    mounted() {
+
+    },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .doInput {
+    &.error{
+        //color:red;
+        border-bottom: 1px solid red;
+        .errorMsg{
+            display: block;
+        }
+        input::-webkit-input-placeholder{
+            color: red
+        }
+    }
+    
     label {
         font-size: 1rem;
+        .prefix{
+            color:red;
+
+        }
     }
 
     input {
@@ -55,6 +101,15 @@ export default {
         &:focus {
             outline: none;
         }
+    }
+
+    .errorMsg{
+        display: none;
+        margin-bottom:10px;
+        font-size: 0.75rem;
+        color:red;
+        text-indent:0.75rem;
+
     }
 }
 </style>
