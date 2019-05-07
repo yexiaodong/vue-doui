@@ -3,8 +3,8 @@
     <section>
       <!-- placeholder="请输入用户名" -->
       <do-input id="username" v-model="input1" label="用户名" ></do-input>
-      <do-input id="phone" required v-model="input2" label="手机号码"></do-input>
-      <do-input id="mail" required v-model="input3" label="邮箱"></do-input>
+      <do-input id="phone" required type="tel" v-model="input2" label="手机号码"></do-input>
+      <do-input id="mail" required type="email" v-model="input3" label="邮箱"></do-input>
       <do-input id="test" required v-model="input4" label="正则"></do-input>
     </section>
   
@@ -26,7 +26,8 @@ export default {
   },
   methods:{
     submit(){
-      console.log('结果',this.input1)
+      console.log('用户名',this.input1)
+      console.log('手机号码',this.input2)
     }
   }
 }
