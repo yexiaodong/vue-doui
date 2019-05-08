@@ -107,7 +107,9 @@ export default {
             this.currentValue = val;
         },
         currentValue(val) {
-            this.validatorInput()
+            if(this.errorCode != ''){
+                this.validatorInput();
+            }
             this.$emit('input', val); //将值给父组件
         },
         type(val){
