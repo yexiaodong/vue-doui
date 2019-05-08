@@ -2,12 +2,13 @@
 <template>
 <div class="doInput" v-bind:class="{error:!valid}">
     <label :for="id"><span class="prefix" v-if="required">*</span>{{label}}<span>{{labelSuffix}}</span></label>
-    <input :id="id" v-model="currentValue" :type="type" :placeholder="'请输入'+label" @blur="handlerBlur">
+    <input :id="id" v-model="currentValue" :type="type" :placeholder="'请输入'+label" @blur="handlerBlur" :maxlength="max">
     <span class="errorMsg">{{errorMsg}}</span>
 </div>
 </template>
 
 <script>
+import { debug } from 'util';
 export default {
     name: "doInput",
     data() {
@@ -46,6 +47,16 @@ export default {
             },
             default: 'text'
         },
+        regex:{
+            type:String,
+            default:''
+        },
+        regexErrorMsg:{
+            type:String,
+            default:''
+        },
+        max:String,
+        min:String,
     },
     methods: {
         validatorInput() {
@@ -66,6 +77,17 @@ export default {
                     this.setError('请输入正确的邮箱！', 'NOT_REGEX_RULE_EMAIL');
                     return;
                 }
+            }
+            if(this.regex != ''){
+                let re = new RegExp(this.regex);
+                if(!re.test(this.currentValue)){
+                    this.setError(this.regexErrorMsg, 'NOT_REGEX_RULE');
+                    return;
+                }
+            }
+            if (this.min && this.currentValue.length < this.min) {
+                this.setError(`最少输入${this.min}位字符`, 'NOT_MIN_SIZE');
+                return;
             }
             this.valid = true;
             this.errorMsg = '';
