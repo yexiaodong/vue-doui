@@ -10,8 +10,8 @@ const myPlugin = {
     // 方法的第一个参数是传入的Vue，第二个参数可以插件的自定义参数
     install (Vue, options) {
         // 将其注册为vue的组件，参数1：组件名，参数2：开发的组件
-        Vue.component(Header.name, Header);
-        Vue.component(File.name, File);
+        //Vue.component(Header.name, Header);
+        //Vue.component(File.name, File);
         Vue.component(Input.name, Input);
         
         Vue.prototype.$doToast = Toast;

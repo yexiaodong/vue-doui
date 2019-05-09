@@ -124,6 +124,7 @@ export default {
 
 <style lang="scss">
 .doInput {
+    background-color: #fff;
     &.error {
         //color:red;
         border-bottom: 1px solid red;
